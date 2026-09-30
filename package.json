@@ -4,6 +4,7 @@
   "private": true,
   "description": "Aplicación contenedora de SaborUPC (taller de micro frontends)",
   "scripts": {
-    "start:all": "node scripts/start-all.js"
+    "start:all": "node scripts/start-all.js",
+    "desplegar": "node scripts/desplegar.js"
   }
 }
