@@ -2,7 +2,7 @@
 // Sirve cada carpeta del taller en su propio puerto, con Cache-Control: no-store.
 //
 // Uso (desde contenedor/):
-//   node scripts/start-all.js                    levanta los cuatro servidores
+//   node scripts/start-all.js                    levanta los seis servidores (8080-8085)
 //   node scripts/start-all.js --sin perfil       todos menos Perfil (simula su caída)
 //   node scripts/start-all.js --solo perfil      solo Perfil (para "volver a encenderlo")
 // --sin y --solo aceptan varios nombres separados por coma: --sin perfil,carrito
@@ -16,7 +16,9 @@ const SERVIDORES = [
   { clave: 'contenedor', carpeta: 'contenedor',   puerto: 8080 },
   { clave: 'catalogo',   carpeta: 'mfe-catalogo', puerto: 8081 },
   { clave: 'carrito',    carpeta: 'mfe-carrito',  puerto: 8082 },
-  { clave: 'perfil',     carpeta: 'mfe-perfil',   puerto: 8083 }
+  { clave: 'perfil',     carpeta: 'mfe-perfil',   puerto: 8083 },
+  { clave: 'seguimiento', carpeta: 'mfe-seguimiento', puerto: 8084 },
+  { clave: 'tokens',     carpeta: 'design-tokens', puerto: 8085 }
 ];
 
 const MIME = {
@@ -118,7 +120,7 @@ function iniciar(def) {
       resolve(null);
     });
     servidor.listen(def.puerto, function () {
-      console.log('✓ ' + def.carpeta.padEnd(13) + 'http://localhost:' + def.puerto);
+      console.log('✓ ' + def.carpeta.padEnd(16) + 'http://localhost:' + def.puerto);
       resolve(servidor);
     });
   });
