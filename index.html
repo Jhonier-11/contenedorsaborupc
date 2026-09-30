@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SaborUPC</title>
+  <link rel="stylesheet" href="contenedor.css">
+</head>
+<body>
+  <header class="app-header">
+    <a href="#/catalogo" class="app-logo">SaborUPC</a>
+    <nav class="app-nav">
+      <a href="#/catalogo" data-ruta="/catalogo">Catálogo</a>
+      <a href="#/carrito" data-ruta="/carrito">Carrito <span id="app-contador" class="app-badge">0</span></a>
+      <a href="#/perfil" data-ruta="/perfil">Perfil</a>
+    </nav>
+    <span id="app-saludo" class="app-saludo">Hola, invitado</span>
+  </header>
+
+  <!-- Aquí el contenedor monta el micro frontend que corresponda a la ruta -->
+  <main id="app-root"></main>
+
+  <footer class="app-footer">Contenedor v1.0 · cada sección es un micro frontend independiente</footer>
+
+  <script src="registro.js"></script>
+  <script src="contenedor.js"></script>
+</body>
+</html>
