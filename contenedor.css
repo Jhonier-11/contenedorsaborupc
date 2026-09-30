@@ -32,4 +32,14 @@ body {
   border-radius: var(--upc-radio-1, 4px); background: var(--upc-color-peligro, #c0392b);
   color: var(--upc-color-sobre-primario, #fff); cursor: pointer;
 }
+.app-toasts {
+  position: fixed; right: var(--upc-espacio-3, 16px); bottom: var(--upc-espacio-3, 16px);
+  display: flex; flex-direction: column; gap: var(--upc-espacio-2, 8px); z-index: 10;
+}
+.app-toast {
+  background: var(--upc-color-texto, #222); color: var(--upc-color-sobre-primario, #fff);
+  padding: 10px 16px; border-radius: var(--upc-radio-1, 4px); font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .3); animation: app-toast-entrada .2s ease-out;
+}
+@keyframes app-toast-entrada { from { opacity: 0; transform: translateY(8px); } }
 .app-footer { text-align: center; font-size: 12px; color: var(--upc-color-texto-suave, #777); padding: 16px; }

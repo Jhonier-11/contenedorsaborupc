@@ -13,6 +13,7 @@
     <nav class="app-nav">
       <a href="#/catalogo" data-ruta="/catalogo">Catálogo</a>
       <a href="#/carrito" data-ruta="/carrito">Carrito <span id="app-contador" class="app-badge">0</span></a>
+      <a href="#/pedidos" data-ruta="/pedidos">Pedidos</a>
       <a href="#/perfil" data-ruta="/perfil">Perfil</a>
     </nav>
     <span id="app-saludo" class="app-saludo">Hola, invitado</span>
@@ -20,6 +21,8 @@
 
   <!-- Aquí el contenedor monta el micro frontend que corresponda a la ruta -->
   <main id="app-root"></main>
+
+  <div id="app-toasts" class="app-toasts" aria-live="polite"></div>
 
   <footer class="app-footer">Contenedor v1.0 · cada sección es un micro frontend independiente</footer>
 

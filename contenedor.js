@@ -1,6 +1,7 @@
 (function () {
   const RUTA_INICIAL = '/catalogo';
   const ID_RAIZ = 'app-root';
+  const DURACION_TOAST_MS = 3000;
   const raiz = document.getElementById(ID_RAIZ);
   const scripts = {};      // url -> Promise (cada script se descarga una sola vez)
   let montado = null;      // entrada del registro montada en este momento
@@ -101,6 +102,19 @@
   window.addEventListener('usuario:cambio', function (e) {
     document.getElementById('app-saludo').textContent = 'Hola, ' + e.detail.nombre;
   });
+
+  window.addEventListener('pedido:estado', function (e) {
+    mostrarToast('Pedido #' + e.detail.id + ': ' + e.detail.estado);
+  });
+
+  // Aviso breve que desaparece solo
+  function mostrarToast(texto) {
+    const toast = document.createElement('div');
+    toast.className = 'app-toast';
+    toast.textContent = texto;
+    document.getElementById('app-toasts').appendChild(toast);
+    setTimeout(function () { toast.remove(); }, DURACION_TOAST_MS);
+  }
 
   // 5. Arranque: precargar los micro frontends que lo requieran y navegar
   Object.values(window.REGISTRO_MFE)
