@@ -2,29 +2,29 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #f4f6f8;
-  color: #222;
+  font-family: var(--upc-fuente-base, Arial, Helvetica, sans-serif);
+  background: var(--upc-color-fondo, #f4f6f8);
+  color: var(--upc-color-texto, #222);
 }
 .app-header {
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 14px 32px;
-  background: #0b4f8a;
-  color: #fff;
+  gap: var(--upc-espacio-4, 24px);
+  padding: 14px var(--upc-espacio-5, 32px);
+  background: var(--upc-color-primario, #0b4f8a);
+  color: var(--upc-color-sobre-primario, #fff);
 }
-.app-logo { color: #fff; font-size: 22px; font-weight: bold; text-decoration: none; }
+.app-logo { color: var(--upc-color-sobre-primario, #fff); font-size: 22px; font-weight: bold; text-decoration: none; }
 .app-nav { display: flex; gap: 8px; flex: 1; }
-.app-nav a { color: #dce9f5; text-decoration: none; padding: 6px 12px; border-radius: 4px; }
-.app-nav a.activo, .app-nav a:hover { background: #1283c8; color: #fff; }
+.app-nav a { color: var(--upc-color-sobre-primario-suave, #dce9f5); text-decoration: none; padding: 6px 12px; border-radius: var(--upc-radio-1, 4px); }
+.app-nav a.activo, .app-nav a:hover { background: var(--upc-color-primario-claro, #1283c8); color: var(--upc-color-sobre-primario, #fff); }
 .app-badge {
   display: inline-block; min-width: 22px; padding: 1px 6px; margin-left: 4px;
-  border-radius: 11px; background: #f2c200; color: #222; font-size: 12px;
+  border-radius: 11px; background: var(--upc-color-acento, #f2c200); color: var(--upc-color-texto, #222); font-size: 12px;
   font-weight: bold; text-align: center;
 }
-.app-saludo { font-size: 14px; color: #dce9f5; }
+.app-saludo { font-size: 14px; color: var(--upc-color-sobre-primario-suave, #dce9f5); }
 #app-root { max-width: 1000px; margin: 24px auto; padding: 0 16px; min-height: 60vh; }
 .app-aviso { color: #666; }
-.app-error { background: #fdecea; color: #a12a1e; padding: 16px; border-radius: 4px; }
-.app-footer { text-align: center; font-size: 12px; color: #777; padding: 16px; }
+.app-error { background: var(--upc-color-peligro-fondo, #fdecea); color: var(--upc-color-peligro-texto, #a12a1e); padding: 16px; border-radius: var(--upc-radio-1, 4px); }
+.app-footer { text-align: center; font-size: 12px; color: var(--upc-color-texto-suave, #777); padding: 16px; }
