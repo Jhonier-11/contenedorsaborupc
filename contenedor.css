@@ -27,4 +27,9 @@ body {
 #app-root { max-width: 1000px; margin: 24px auto; padding: 0 16px; min-height: 60vh; }
 .app-aviso { color: #666; }
 .app-error { background: var(--upc-color-peligro-fondo, #fdecea); color: var(--upc-color-peligro-texto, #a12a1e); padding: 16px; border-radius: var(--upc-radio-1, 4px); }
+.app-reintentar {
+  display: block; margin-top: var(--upc-espacio-2, 8px); padding: 6px 14px; border: 0;
+  border-radius: var(--upc-radio-1, 4px); background: var(--upc-color-peligro, #c0392b);
+  color: var(--upc-color-sobre-primario, #fff); cursor: pointer;
+}
 .app-footer { text-align: center; font-size: 12px; color: var(--upc-color-texto-suave, #777); padding: 16px; }

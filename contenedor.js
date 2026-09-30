@@ -6,15 +6,28 @@
   let montado = null;      // entrada del registro montada en este momento
   let turno = 0;           // evita condiciones de carrera si el usuario navega rápido
 
+  // Observabilidad: cuánto tardó en cargar (o en fallar) cada micro frontend
+  function registrarTiempo(nombre, inicio, cargado) {
+    const ms = (performance.now() - inicio).toFixed(1);
+    if (cargado) console.log('[SaborUPC] ' + nombre + ' cargado en ' + ms + ' ms');
+    else console.warn('[SaborUPC] ' + nombre + ' no se pudo cargar (' + ms + ' ms)');
+  }
+
   // 1. Descarga dinámica del bundle de un micro frontend
-  function cargarScript(url) {
+  function cargarScript(entrada) {
+    const url = entrada.url;
     if (!scripts[url]) {
+      const inicio = performance.now();
       scripts[url] = new Promise(function (resolve, reject) {
         const s = document.createElement('script');
         s.src = url + '?v=' + Date.now(); // sin caché: vemos cada "despliegue" al recargar
-        s.onload = resolve;
+        s.onload = function () {
+          registrarTiempo(entrada.nombre, inicio, true);
+          resolve();
+        };
         s.onerror = function () {
           delete scripts[url];
+          registrarTiempo(entrada.nombre, inicio, false);
           reject(new Error('No se pudo cargar ' + url));
         };
         document.head.appendChild(s);
@@ -56,17 +69,24 @@
     }
     raiz.innerHTML = '<p class="app-aviso">Cargando ' + entrada.nombre + '…</p>';
     try {
-      await cargarScript(entrada.url);
+      await cargarScript(entrada);
       if (miTurno !== turno) return;   // el usuario ya navegó a otra ruta
       raiz.innerHTML = '';
       montar(entrada);
     } catch (e) {
       if (miTurno !== turno) return;
-      raiz.innerHTML = '<p class="app-error">El micro frontend <b>' + entrada.nombre +
-        '</b> no está disponible en este momento. El resto de la aplicación sigue funcionando.</p>';
+      raiz.innerHTML = '<div class="app-error">El micro frontend <b>' + entrada.nombre +
+        '</b> no está disponible en este momento. El resto de la aplicación sigue funcionando. ' +
+        '<button type="button" class="app-reintentar">Reintentar</button></div>';
       console.error(e);
     }
   }
+
+  // Reintentar sin recargar la página: cargarScript ya descartó la promesa fallida,
+  // así que navegar() vuelve a intentar la descarga.
+  raiz.addEventListener('click', function (e) {
+    if (e.target.closest('.app-reintentar')) navegar();
+  });
 
   function marcarEnlaceActivo(ruta) {
     document.querySelectorAll('.app-nav a').forEach(function (a) {
@@ -85,7 +105,7 @@
   // 5. Arranque: precargar los micro frontends que lo requieran y navegar
   Object.values(window.REGISTRO_MFE)
     .filter(function (m) { return m.precargar; })
-    .forEach(function (m) { cargarScript(m.url).catch(console.error); });
+    .forEach(function (m) { cargarScript(m).catch(console.error); });
 
   window.addEventListener('hashchange', navegar);
   navegar();
