@@ -21,7 +21,7 @@ const MFES = {
   perfil:      { carpeta: 'mfe-perfil',      archivo: 'perfil.js' },
   seguimiento: { carpeta: 'mfe-seguimiento', archivo: 'seguimiento.js' }
 };
-const COLORES = ['#d35400', '#8e44ad', '#16a085', '#2980b9', '#c0392b'];
+const COLORES = ['#a8431f', '#6b3fa0', '#0e7c66', '#1d5fa8', '#8a5a00'];
 
 function salir(mensaje) {
   console.error('✗ ' + mensaje);
