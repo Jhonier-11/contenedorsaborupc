@@ -97,7 +97,11 @@
 
   // 4. Comunicación: el contenedor solo ESCUCHA eventos públicos
   window.addEventListener('carrito:actualizado', function (e) {
-    document.getElementById('app-contador').textContent = e.detail.cantidad;
+    const contador = document.getElementById('app-contador');
+    contador.textContent = e.detail.cantidad;
+    contador.classList.remove('app-badge-pulso');   // reinicia la animación del contador
+    void contador.offsetWidth;
+    contador.classList.add('app-badge-pulso');
   });
   window.addEventListener('usuario:cambio', function (e) {
     document.getElementById('app-saludo').textContent = 'Hola, ' + e.detail.nombre;
