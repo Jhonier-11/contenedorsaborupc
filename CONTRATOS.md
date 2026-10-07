@@ -94,7 +94,12 @@ evento sin `canal` (un publicador antiguo) y con `canal: 'web'`; ambos se acepta
 tipografía, espaciado y forma. Se consumen siempre como `var(--upc-…, valor-de-respaldo)`, de modo que
 cada pieza se ve igual en modo independiente o si el servidor de tokens está caído. Las variables heredan a
 través del Shadow DOM, así que también llegan a `<mfe-perfil>`. Agregar una variable es compatible;
-renombrar o eliminar una, no.
+renombrar o eliminar una, no. **Cambiar el valor** de una variable es el mecanismo previsto para rediseñar:
+ningún MFE se toca por ello, salvo los valores de respaldo, que deben coincidir con `tokens.css`.
+
+Grupos de tokens: color de marca y de estado, superficies y texto, tipografía (`--upc-fuente-base`,
+`--upc-fuente-display`, `--upc-fuente-mono`, tamaños), espaciado, radios y sombras. Las fuentes (Fraunces,
+Hanken Grotesk e IBM Plex Mono) se cargan desde el HTML de cada página; sin ellas se usan las de respaldo.
 
 ## 5. Historial de cambios
 
@@ -102,6 +107,7 @@ renombrar o eliminar una, no.
 |---|---|
 | 2.0 | Nuevos eventos `pedido:confirmado` y `pedido:estado` (versión 1). Nuevo MFE Seguimiento (`/pedidos`, precargado, render asíncrona). Nuevo servidor de tokens. |
 | 2.0 | `pedido:confirmado` agrega el campo opcional `canal` (sin cambiar de versión). |
+| 2.0 | Rediseño visual (paleta verde, tipografía, sombras): solo cambian valores de tokens y CSS de cada pieza; contratos de montaje y eventos intactos. |
 | 1.0 | Contrato de la guía: `carrito:agregar`, `carrito:actualizado`, `usuario:cambio`, funciones `renderX/unmountX` y Web Component. |
 
 ## 6. Cómo se verifica
